@@ -11,6 +11,13 @@
 <div class="container mt-4">
     <h1>Mes ingrédients</h1>
 
+    {# read and display just one flash message type #}
+    {% for message in app.flashes('success') %}
+      <div class="alert alert-success mt-4">
+          {{ message }}
+      </div>
+    {% endfor %}
+
 
     {% if not ingredients.items is same as([]) %}
 
@@ -31,6 +38,8 @@
                     <td>{{ ingredient.name }}</td>
                     <td>{{ ingredient.price }}</td>
                     <td>{{ ingredient.dateCreated|date('d/m/Y') }}</td>
+                    <td><a href="{{ path('ingredient.edit', {'id': ingredient.id}) }}">edit</a></td>
+
                   </tr>
                 {% endfor %}
                 </tbody>

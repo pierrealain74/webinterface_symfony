@@ -54,6 +54,12 @@ class IngredientType extends AbstractType
                     'class' => 'btn btn-primary  mt-4',
                 ],
                 'label' => 'Ajouter',
+            ])
+            ->add('submit', SubmitType::class, [
+                'attr' => [
+                    'class' => 'btn btn-primary  mt-4',
+                ],
+                'label' => 'Modifier',
             ]);
     }
 
