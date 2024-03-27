@@ -12,6 +12,7 @@
     <h1>Mes ingrédients</h1>
 
 
+    {% if not ingredients.items is same as([]) %}
 
             <table class="table table-hover">
                 <thead>
@@ -39,6 +40,8 @@
             <div class="navigation">
                 {{ knp_pagination_render(ingredients) }}
             </div>
-
+{% else %}
+<p>Aucun ingrédients</p>
+{% endif %}
 </div>
 {% endblock %}
