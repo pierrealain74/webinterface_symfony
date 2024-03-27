@@ -39,6 +39,7 @@
                     <td>{{ ingredient.price }}</td>
                     <td>{{ ingredient.dateCreated|date('d/m/Y') }}</td>
                     <td><a href="{{ path('ingredient.edit', {'id': ingredient.id}) }}">edit</a></td>
+                    <td><a href="{{ path('ingredient.delete', {'id': ingredient.id}) }}">delete</a></td>
 
                   </tr>
                 {% endfor %}
