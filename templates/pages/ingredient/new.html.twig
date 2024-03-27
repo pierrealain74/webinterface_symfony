@@ -1,8 +1,21 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+
+
+
     <div class="container">
         <h1 class="mt-4">Ajouter nouveau Ingredient</h1>
+
+        {# read and display just one flash message type #}
+        {% for message in app.flashes('success') %}
+        <div class="alert alert-success mt-4">
+            {{ message }}
+        </div>
+        {% endfor %}
+
         {{ form(form)}}
+
+        
     </div>
 {% endblock body %}

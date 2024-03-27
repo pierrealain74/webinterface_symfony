@@ -5,6 +5,8 @@ namespace App\Controller;
 use App\Entity\Ingredient;
 use App\Form\IngredientType;
 use App\Repository\IngredientRepository;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,7 +22,7 @@ class IngredientController extends AbstractController
  * 
  */
 
-    #[Route('/ingredient', name: 'ingredient')]
+    #[Route('/ingredient', name: 'ingredient.index')]
 
     public function index(IngredientRepository $repository, PaginatorInterface $paginator, Request $request): Response
     {
@@ -40,11 +42,33 @@ class IngredientController extends AbstractController
     }
 
     #[Route('/ingredient/nouveau', name: 'ingredient.new', methods: ['GET', 'POST'])]
-    public function new(): Response
+    public function new(Request $request, EntityManagerInterface $manager): Response
     {
         $ingredient = new Ingredient();
         $form = $this->createForm(IngredientType::class, $ingredient);
 
+        $form->handleRequest($request);
+        if($form->isSubmitted() AND $form->isValid()){
+            
+            //dd($form->getData());
+            $ingredient = $form->getData();
+            $manager->persist($ingredient);
+            $manager->flush();
+
+            $this->addFlash(
+                'success',
+                'Ingredient correctement inséré :)'
+            );
+            
+            $this -> redirectToRoute('ingredient.index');
+        }
+        else{
+            
+            $this->addFlash(
+                'notice',
+                'Ingredient déjà inséré ou donnée manquante :)'
+            );
+        }
 
         return $this->render
         (

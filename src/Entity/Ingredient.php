@@ -4,12 +4,15 @@ namespace App\Entity;
 
 use App\Repository\IngredientRepository;
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: IngredientRepository::class)]
-
-
+#[UniqueEntity('name')]//Ne peut pas y avoir deux fois le meme produit (avec le meme nom)
+/**
+ * @ORM\Entity(repositoryClass="App\Repository\IngredientRepository")
+ * @UniqueEntity(fields={"name"}, message="Ce nom de produit est déjà utilisé.")
+ */
 class Ingredient
 {
     #[ORM\Id]
