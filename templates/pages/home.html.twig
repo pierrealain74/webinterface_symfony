@@ -13,5 +13,21 @@
             <a class="btn btn-primary btn-lg" href="#" role="button">S'inscrire</a>
             </p>
         </div>
+
+        <h3 class="display-4">Affiche tableau</h3>
+        <p>
+
+            {% for arrayIngredient in ingredient %}
+
+            {{ <ingredient class="name"></ingredient> }}<br />
+
+            {% endfor %}
+
+        </p>
+
+
+
+
+
     </div>
 {% endblock %}

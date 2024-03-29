@@ -38,8 +38,8 @@
                     <td>{{ ingredient.name }}</td>
                     <td>{{ ingredient.price }}</td>
                     <td>{{ ingredient.dateCreated|date('d/m/Y') }}</td>
-                    <td><a href="{{ path('ingredient.edit', {'id': ingredient.id}) }}">edit</a></td>
-                    <td><a href="{{ path('ingredient.delete', {'id': ingredient.id}) }}">delete</a></td>
+                    <td><a href="{{ path('ingredient.edit', {'id': ingredient.id}) }}"><button type="button" class="btn btn-success">edit</button></a></td>
+                    <td><a href="{{ path('ingredient.delete', {'id': ingredient.id}) }}" onclick="return confirm('Voulez-vous vraiment supprimer cet ingrédient ?')"><button type="button" class="btn btn-danger">delete</button></a></td>
 
                   </tr>
                 {% endfor %}

@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Test{% endblock %}
+
+{% block body %}
+<div class="container mt-4">
+    <h1>Mes Test</h1>
+
+
+    <p>
+        {% for ingredient in ingredients %}
+       
+          {{ ingredient.id }}<br />
+          {{ ingredient.name }}<br />
+          {{ ingredient.price }}&euro;<br />---<br />
+
+        {% endfor %}
+
+    </p>
+   
+
+</div>
+{% endblock %}
