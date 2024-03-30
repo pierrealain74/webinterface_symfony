@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes Recettes{% endblock %}
+
+{% block body %}
+{# <style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style> #}
+
+<div class="container mt-4">
+    <h1>Mes Recettes</h1>
+
+    {# read and display just one flash message type #}
+    {% for message in app.flashes('success') %}
+      <div class="alert alert-success mt-4">
+          {{ message }}
+      </div>
+    {% endfor %}
+
+
+    {% if not recipes.items is same as([]) %}
+
+            <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col">ID recette</th>
+                    <th scope="col">Nom recette</th>
+                    <th scope="col">Durée</th>
+                    <th scope="col">Difficulté</th>
+                    <th scope="col">Descrtion</th>
+                    <th scope="col">Prix</th>
+                    <th scope="col">Date création</th>
+                    <th scope="col">Date update</th>
+
+
+                  </tr>
+                </thead>
+                <tbody>
+                {% for recipe in recipes %}
+                  <tr class="table-primary">
+                    <th scope="row">{{ recipe.id }}</th>
+                    <td>{{ recipe.name }}</td>
+                    <td>{{ recipe.duration }}</td>
+                    <td>{{ recipe.difficulty }}</td>
+                    <td>{{ recipe.description }}</td>
+                    <td>{{ recipe.price }}</td>
+                    <td>{{ recipe.createdAt|date('d/m/Y') }}</td>
+                    <td>{{ recipe.updatedAt|date('d/m/Y') }}</td>
+                    <td><a href="#"><button type="button" class="btn btn-success">edit</button></a></td>
+                    <td><a href="#" onclick="return confirm('Voulez-vous vraiment supprimer cette recette ?')"><button type="button" class="btn btn-danger">delete</button></a></td>
+
+                  </tr>
+                {% endfor %}
+                </tbody>
+              </table>
+
+            {# display navigation #}
+            <div class="navigation">
+                {{ knp_pagination_render(recipes) }}
+            </div>
+{% else %}
+<p>Aucune recette</p>
+{% endif %}
+</div>
+{% endblock %}

@@ -47,7 +47,7 @@ class Recipe
     #[Assert\LessThan(1001)]
     private ?float $price;
 
-    #[ORM\Column]
+    #[ORM\Column(type: 'boolean')]
     private ?bool $isFavorite;
 
     #[ORM\Column]
@@ -142,12 +142,21 @@ class Recipe
         return $this->isFavorite;
     }
 
+    
+
     public function setIsFavorite(bool $isFavorite): static
     {
         $this->isFavorite = $isFavorite;
 
         return $this;
     }
+
+    public function getIsFavorite(): ?bool
+    {
+       
+        return $this->isFavorite;
+    }
+
 
     public function getCreatedAt(): ?\DateTimeImmutable
     {
